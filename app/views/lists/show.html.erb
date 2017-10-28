@@ -1,0 +1,6 @@
+<table class="table table-condensed table-hover text-center">
+<tr><td><h3><%= @list.name %></h3></td></tr>
+<tr><td><%= @list.due_date %></td></tr>
+<tr><td><%= simple_format(@list.note) %></td></tr>
+<tr><td><%= link_to 'Back to index', lists_path %></td></tr>
+</table>

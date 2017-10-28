@@ -1,0 +1,41 @@
+<ul>
+  <h1>
+    <%="To Do List" %>
+  </h1>
+  <h2>
+    <%= "Today: #{Time.new.to_date}" %>
+  </h2>
+  <table class="table table-hover">
+    <tr>
+    <th><%= "Done" %></th>
+    <th><%= "Name" %></th>
+    <th><%= "Due Date" %></th>
+    <th><%= "Show" %></th>
+    <th><%= "Edit" %></th>
+    <th><%= "Destroy" %></th>
+    </tr>
+    <% @lists.each do |list| %>
+      <tr>
+        <% if list.due_date < Time.new.to_date %>
+          <td>
+            <%= "X" %>
+          </td>
+        <% else %>
+          <td>
+            <%= check_box_tag(:done) %>
+          </td>
+        <% end %>
+        <td><%= list.name %></td>
+        <td><%= list.due_date %></td>     
+        <td><%= link_to 'Show', list_path(list) %></td>
+        <td><%= link_to 'Edit', edit_list_path(list) %></td>        
+          <% if list.due_date < Time.new.to_date %>
+            <td><%= "Overdue" %></td>
+          <% else %>
+            <td><%= link_to 'Destroy', list_path(list), method: :delete, data:{ confirm: "Are you sure?" } %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+<button type="button" class="btn btn-warning"><%= link_to 'New List', new_list_path %></button>
