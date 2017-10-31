@@ -22,7 +22,7 @@
           </td>
         <% else %>
           <td>
-            <%= check_box_tag(:done) %>
+            <%= check_box_tag :done, true , list.done, data: { url: done_list_path(list), method: :post, remote: true } %>
           </td>
         <% end %>
         <td><%= list.name %></td>

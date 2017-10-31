@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, :only => [:show, :edit, :update, :destroy]
+  before_action :set_list, :only => [:show, :edit, :update, :destroy, :done]
 
   def index
     @lists = List.all
@@ -31,14 +31,19 @@ class ListsController < ApplicationController
       redirect_to lists_url
   end
 
+  def done
+      @list.update(done: !(@list.done))
+  end
+
   private
+
 
   def set_list
     @list = List.find(params[:id])
   end
 
   def list_params
-    params.require(:list).permit(:name, :due_date, :note)
+    params.require(:list).permit(:name, :due_date, :note, :done)
   end
 
 end
