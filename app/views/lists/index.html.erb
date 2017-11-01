@@ -16,15 +16,9 @@
     </tr>
     <% @lists.each do |list| %>
       <tr>
-        <% if list.due_date < Time.new.to_date %>
-          <td>
-            <%= "X" %>
-          </td>
-        <% else %>
           <td>
             <%= check_box_tag :done, true , list.done, data: { url: done_list_path(list), method: :post, remote: true } %>
           </td>
-        <% end %>
         <td><%= list.name %></td>
         <td><%= list.due_date %></td>     
         <td><%= link_to 'Show', list_path(list) %></td>
